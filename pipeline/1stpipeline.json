@@ -30,7 +30,6 @@
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -60,12 +59,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"Filename": {
-				"type": "string",
-				"defaultValue": "emp1.csv"
-			}
-		},
 		"annotations": []
 	}
 }

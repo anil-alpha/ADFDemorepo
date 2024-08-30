@@ -8,7 +8,7 @@
 		"parameters": {
 			"FileName": {
 				"type": "String",
-				"defaultValue": "NIFTY.csv"
+				"defaultValue": "EQUITY.csv"
 			}
 		},
 		"annotations": [],
