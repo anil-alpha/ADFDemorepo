@@ -11,9 +11,49 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"AzureDataLakeStorageforInputcontainerSQL_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageforInputcontainerSQL'"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"sqldbnew_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sqldbnew'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorageforInputcontainerSQL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuredbserverdemo.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "azdb"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminanil"
+		},
+		"sqldbnew_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuredbserverdemo.database.windows.net"
+		},
+		"sqldbnew_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "master"
+		},
+		"sqldbnew_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adminanil"
 		},
 		"containerUri": {
 			"type": "string",
@@ -45,8 +85,38 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
+					"AzureDataLakeStorageforInputcontainerSQL_accountKey": {
+						"value": "[parameters('AzureDataLakeStorageforInputcontainerSQL_accountKey')]"
+					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"sqldbnew_password": {
+						"value": "[parameters('sqldbnew_password')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorageforInputcontainerSQL_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorageforInputcontainerSQL_properties_typeProperties_url')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					},
+					"sqldbnew_properties_typeProperties_server": {
+						"value": "[parameters('sqldbnew_properties_typeProperties_server')]"
+					},
+					"sqldbnew_properties_typeProperties_database": {
+						"value": "[parameters('sqldbnew_properties_typeProperties_database')]"
+					},
+					"sqldbnew_properties_typeProperties_userName": {
+						"value": "[parameters('sqldbnew_properties_typeProperties_userName')]"
 					}
 				}
 			},

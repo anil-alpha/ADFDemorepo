@@ -8,8 +8,38 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorageforInputcontainerSQL_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"sqldbnew_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorageforInputcontainerSQL_properties_typeProperties_url": {
+			"value": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "azuredbserverdemo.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "azdb"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"sqldbnew_properties_typeProperties_server": {
+			"value": "azuredbserverdemo.database.windows.net"
+		},
+		"sqldbnew_properties_typeProperties_database": {
+			"value": "master"
+		},
+		"sqldbnew_properties_typeProperties_userName": {
+			"value": "adminanil"
 		}
 	}
 }
