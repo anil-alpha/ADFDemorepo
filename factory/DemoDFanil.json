@@ -1,0 +1,9 @@
+{
+	"name": "DemoDFanil",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "384b1f1a-15f6-424b-af7b-05b607686ddd",
+		"tenantId": "cd6d5846-efad-4436-9247-c0e6fafe9334"
+	}
+}
