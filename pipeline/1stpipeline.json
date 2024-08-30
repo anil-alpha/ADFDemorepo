@@ -76,7 +76,7 @@
 		"parameters": {
 			"Filename": {
 				"type": "string",
-				"defaultValue": "emp1"
+				"defaultValue": "emp1.csv"
 			}
 		},
 		"annotations": []

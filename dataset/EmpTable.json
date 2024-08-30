@@ -27,6 +27,23 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "empname",
+				"type": "String"
+			},
+			{
+				"name": "empsal",
+				"type": "String"
+			},
+			{
+				"name": "depud",
+				"type": "String"
+			}
+		]
 	}
 }
