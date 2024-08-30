@@ -1,24 +1,16 @@
 {
-	"name": "EmpTable",
+	"name": "depcsvassert",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"FileName": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileName",
-					"type": "Expression"
-				},
+				"fileName": "depid.csv",
 				"folderPath": "Input",
 				"fileSystem": "democontainer"
 			},
@@ -29,27 +21,11 @@
 		},
 		"schema": [
 			{
-				"name": "empid",
-				"type": "String"
-			},
-			{
-				"name": "empname",
-				"type": "String"
-			},
-			{
-				"name": "empsal",
-				"type": "String"
-			},
-			{
 				"name": "depid",
 				"type": "String"
 			},
 			{
-				"name": "gender",
-				"type": "String"
-			},
-			{
-				"name": "dob",
+				"name": "deptname",
 				"type": "String"
 			}
 		]

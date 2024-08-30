@@ -1,0 +1,96 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EmpTable",
+						"type": "DatasetReference"
+					},
+					"name": "emp1assert"
+				},
+				{
+					"dataset": {
+						"referenceName": "depcsvassert",
+						"type": "DatasetReference"
+					},
+					"name": "depcsv"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "assertdatasetsink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureDataLakeStorage1",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "assert1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "filtererrorlessrows"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          empname as string,",
+				"          empsal as string,",
+				"          depid as string,",
+				"          gender as string,",
+				"          dob as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> emp1assert",
+				"source(output(",
+				"          depid as string,",
+				"          deptname as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> depcsv",
+				"emp1assert, depcsv assert(expectTrue(!isNull(toDate(dob,'yyyyMMdd')), false, 'assertDOB', null, 'we are checking DOB format'),",
+				"     expectUnique(empid, false, 'empid', null, 'empidshouldbeunique'),",
+				"     expectExists(emp1assert@depid == depcsv@depid, false, 'assertdepexists')) ~> assert1",
+				"assert1 derive(iserrorRow = isError(),",
+				"          isincorrectdeprow = hasError('assertdepexists')) ~> derivedColumn1",
+				"derivedColumn1 filter(iserrorRow == false()) ~> filtererrorlessrows",
+				"filtererrorlessrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empid as string,",
+				"          empname as string,",
+				"          empsal as string,",
+				"          depud as string",
+				"     ),",
+				"     partitionFileNames:['assertfileoutput'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empid,",
+				"          empname,",
+				"          dob,",
+				"          deptname,",
+				"          depid = emp1assert@depid",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

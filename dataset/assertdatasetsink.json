@@ -1,25 +1,16 @@
 {
-	"name": "EmpTable",
+	"name": "assertdatasetsink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"FileName": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileName",
-					"type": "Expression"
-				},
-				"folderPath": "Input",
+				"folderPath": "Output",
 				"fileSystem": "democontainer"
 			},
 			"columnDelimiter": ",",
@@ -41,15 +32,7 @@
 				"type": "String"
 			},
 			{
-				"name": "depid",
-				"type": "String"
-			},
-			{
-				"name": "gender",
-				"type": "String"
-			},
-			{
-				"name": "dob",
+				"name": "depud",
 				"type": "String"
 			}
 		]
