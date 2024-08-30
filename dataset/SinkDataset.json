@@ -2,7 +2,7 @@
 	"name": "SinkDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "AzureDataLakeStorageforInputcontainerSQL",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -18,6 +18,23 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "empname",
+				"type": "String"
+			},
+			{
+				"name": "empsal",
+				"type": "String"
+			},
+			{
+				"name": "depud",
+				"type": "String"
+			}
+		]
 	}
 }
