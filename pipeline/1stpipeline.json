@@ -32,7 +32,8 @@
 							"type": "AzureBlobFSWriteSettings",
 							"metadata": [
 								{
-									"value": ""
+									"name": "Filename",
+									"value": "empoutput"
 								}
 							]
 						},
@@ -74,7 +75,8 @@
 		],
 		"parameters": {
 			"Filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "emp1"
 			}
 		},
 		"annotations": []
