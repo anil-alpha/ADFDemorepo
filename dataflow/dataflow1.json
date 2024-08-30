@@ -82,13 +82,6 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     mapColumn(",
-				"          empid,",
-				"          empname,",
-				"          dob,",
-				"          deptname,",
-				"          depid = emp1assert@depid",
-				"     ),",
 				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
