@@ -68,7 +68,7 @@
 				"     partitionBy('hash', 1)) ~> aggregate1",
 				"depflowlet aggregate(groupBy(deptname,",
 				"          depid),",
-				"     depid = count()) ~> aggregate2",
+				"     count = count()) ~> aggregate2",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
@@ -88,7 +88,11 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          deptname,",
+				"          depid = aggregate2@depid",
+				"     )) ~> sink2"
 			]
 		}
 	}
