@@ -91,7 +91,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
 				"          deptname,",
-				"          depid = aggregate2@depid",
+				"          depid",
 				"     )) ~> sink2"
 			]
 		}
