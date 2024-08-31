@@ -1,0 +1,95 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "flowlet",
+						"type": "DatasetReference"
+					},
+					"name": "empflowlet"
+				},
+				{
+					"dataset": {
+						"referenceName": "deptflowlet",
+						"type": "DatasetReference"
+					},
+					"name": "depflowlet"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "outputflolet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "outputflolet",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "aggregate2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          empname as string,",
+				"          empsal as string,",
+				"          depid as string,",
+				"          gender as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empflowlet",
+				"source(output(",
+				"          depid as short,",
+				"          deptname as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> depflowlet",
+				"empflowlet aggregate(groupBy(empid,",
+				"          empname,",
+				"          gender),",
+				"     count = count(),",
+				"     partitionBy('hash', 1)) ~> aggregate1",
+				"depflowlet aggregate(groupBy(deptname,",
+				"          depid),",
+				"     depid = count()) ~> aggregate2",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empid,",
+				"          empname,",
+				"          gender",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"aggregate2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
+			]
+		}
+	}
+}
