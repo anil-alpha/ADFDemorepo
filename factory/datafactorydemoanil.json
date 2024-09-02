@@ -1,0 +1,9 @@
+{
+	"name": "datafactorydemoanil",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6f2f1826-7523-4597-8c77-5da6ba57fa29",
+		"tenantId": "cd6d5846-efad-4436-9247-c0e6fafe9334"
+	}
+}
