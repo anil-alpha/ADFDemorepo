@@ -188,6 +188,14 @@
 											"value": "'@{variables('logFileName')}'",
 											"type": "Expression"
 										}
+									},
+									"datasetParameters": {
+										"log": {
+											"logFilename": {
+												"value": "@variables('logFileName')",
+												"type": "Expression"
+											}
+										}
 									}
 								},
 								"compute": {
