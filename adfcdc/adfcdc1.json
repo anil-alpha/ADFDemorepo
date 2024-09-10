@@ -1,0 +1,284 @@
+{
+	"name": "adfcdc1",
+	"properties": {
+		"SourceConnectionsInfo": [
+			{
+				"SourceEntities": [
+					{
+						"name": "dbo.Persons",
+						"properties": {
+							"schema": [
+								{
+									"name": "ID",
+									"dataType": "integer"
+								},
+								{
+									"name": "LastName",
+									"dataType": "string"
+								},
+								{
+									"name": "Age",
+									"dataType": "integer"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "dbo"
+								},
+								{
+									"name": "tableName",
+									"value": "Persons"
+								},
+								{
+									"name": "enableNativeCdc",
+									"value": true
+								},
+								{
+									"name": "netChanges",
+									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase_source",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "skipInitialLoad",
+							"value": true
+						}
+					]
+				}
+			}
+		],
+		"TargetConnectionsInfo": [
+			{
+				"TargetEntities": [
+					{
+						"name": "dbo.Persons_sink",
+						"properties": {
+							"schema": [
+								{
+									"name": "ID",
+									"dataType": "integer"
+								},
+								{
+									"name": "LastName",
+									"dataType": "string"
+								},
+								{
+									"name": "Age",
+									"dataType": "integer"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "dbo"
+								},
+								{
+									"name": "tableName",
+									"value": "Persons_sink"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								},
+								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
+									"name": "defaultToUpsert",
+									"value": true
+								},
+								{
+									"name": "keys",
+									"value": [
+										"ID"
+									]
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase_source",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "deletable",
+							"value": false
+						},
+						{
+							"name": "insertable",
+							"value": true
+						},
+						{
+							"name": "updateable",
+							"value": false
+						},
+						{
+							"name": "upsertable",
+							"value": false
+						},
+						{
+							"name": "skipDuplicateMapInputs",
+							"value": true
+						},
+						{
+							"name": "skipDuplicateMapOutputs",
+							"value": true
+						}
+					]
+				},
+				"DataMapperMappings": [
+					{
+						"targetEntityName": "dbo.Persons_sink",
+						"sourceEntityName": "dbo.Persons",
+						"sourceConnectionReference": {
+							"connectionName": "AzureSqlDatabase_source",
+							"type": "linkedservicetype"
+						},
+						"attributeMappingInfo": {
+							"attributeMappings": [
+								{
+									"name": "Age",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Age",
+										"entity": "dbo.Persons",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase_source",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ID",
+										"entity": "dbo.Persons",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase_source",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "LastName",
+									"type": "Derived",
+									"functionName": "upper",
+									"expression": "upper(LastName)",
+									"attributeReferences": [
+										{
+											"name": "LastName",
+											"entity": "dbo.Persons",
+											"entityConnectionReference": {
+												"connectionName": "AzureSqlDatabase_source",
+												"type": "linkedservicetype"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"Relationships": []
+			}
+		],
+		"Policy": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1
+			},
+			"mode": "Microbatch"
+		},
+		"allowVNetOverride": false
+	}
+}
