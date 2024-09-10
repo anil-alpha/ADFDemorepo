@@ -107,7 +107,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable",
+						"referenceName": "AzureSqlTable_CDC",
 						"type": "DatasetReference"
 					}
 				]
@@ -216,7 +216,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable",
+						"referenceName": "AzureSqlTable_CDC",
 						"type": "DatasetReference"
 					}
 				]
