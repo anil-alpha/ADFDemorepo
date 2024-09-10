@@ -30,8 +30,8 @@
 				"source(output(",
 				"          empid as integer,",
 				"          empname as string,",
-				"          empsal as string,",
-				"          depid as string",
+				"          empsal as double,",
+				"          depid as integer",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -58,7 +58,7 @@
 				"          empid,",
 				"          empname,",
 				"          empsal,",
-				"          depid",
+				"          depid = empid",
 				"     )) ~> sink1"
 			]
 		}
