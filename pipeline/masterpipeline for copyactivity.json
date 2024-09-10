@@ -46,7 +46,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "@Inser into tbl_logging values('@{activity('Execute Pipeline1').output.pipelineReturnValue.PipelineName}','@{activity('Execute Pipeline1').output.pipelineReturnValue.RunId}')",
+								"value": "Insert into tbl_logging values('@{activity('Execute Pipeline1').output.pipelineReturnValue.PipelineName}','@{activity('Execute Pipeline1').output.pipelineReturnValue.RunId}')",
 								"type": "Expression"
 							}
 						}
