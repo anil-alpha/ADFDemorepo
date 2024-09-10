@@ -1,0 +1,141 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdemoanil2025"
+		},
+		"ADLS_accountKey": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorageforInputcontainerSQL_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_cdc_sink_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_source_password": {
+			"value": ""
+		},
+		"AzureSqlDatabaselinkedservice_password": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"onprem_password": {
+			"value": ""
+		},
+		"sqldbnew_password": {
+			"value": ""
+		},
+		"ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdemoanil.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://adlsdemoanil.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorageforInputcontainerSQL_properties_typeProperties_url": {
+			"value": "https://demostorageaccountanil.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "azuredbserverdemo.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "azdb"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_server": {
+			"value": "serversqldbanil.database.windows.net"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_database": {
+			"value": "sqldb"
+		},
+		"AzureSqlDatabase2_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"AzureSqlDatabase_cdc_sink_properties_typeProperties_server": {
+			"value": "serversqldbanil.database.windows.net"
+		},
+		"AzureSqlDatabase_cdc_sink_properties_typeProperties_database": {
+			"value": "sqldb"
+		},
+		"AzureSqlDatabase_cdc_sink_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"AzureSqlDatabase_source_properties_typeProperties_server": {
+			"value": "serversqldbanil.database.windows.net"
+		},
+		"AzureSqlDatabase_source_properties_typeProperties_database": {
+			"value": "sqldb"
+		},
+		"AzureSqlDatabase_source_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"AzureSqlDatabaselinkedservice_properties_typeProperties_server": {
+			"value": "serversqldbanil.database.windows.net"
+		},
+		"AzureSqlDatabaselinkedservice_properties_typeProperties_database": {
+			"value": "sqldb"
+		},
+		"AzureSqlDatabaselinkedservice_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://pokeapi.co/api/v2/pokemon"
+		},
+		"RestService2_properties_typeProperties_url": {
+			"value": "https://pokeapi.co/api/v2/pokemon?offset={offset}&limit=20"
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "@{linkedService().servername}"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "@{datalinkedService().databasename}"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "@{linkedService().username}"
+		},
+		"onprem_properties_typeProperties_host": {
+			"value": "\\\\ANIL\\selfhosted-IR"
+		},
+		"onprem_properties_typeProperties_userId": {
+			"value": "Anil"
+		},
+		"sqldbnew_properties_typeProperties_server": {
+			"value": "azuredbserverdemo.database.windows.net"
+		},
+		"sqldbnew_properties_typeProperties_database": {
+			"value": "master"
+		},
+		"sqldbnew_properties_typeProperties_userName": {
+			"value": "adminanil"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
