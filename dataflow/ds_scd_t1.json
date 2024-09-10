@@ -58,7 +58,7 @@
 				"          empid,",
 				"          empname,",
 				"          empsal,",
-				"          depid = empid",
+				"          depid",
 				"     )) ~> sink1"
 			]
 		}
