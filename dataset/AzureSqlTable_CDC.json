@@ -24,8 +24,8 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "Persons_sink"
+			"schema": "cdc",
+			"table": "dbo_persons_CT"
 		}
 	}
 }
