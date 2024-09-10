@@ -75,7 +75,27 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "PipelineName",
+							"value": {
+								"type": "String",
+								"content": "copypipeline"
+							}
+						},
+						{
+							"key": "RunId",
+							"value": {
+								"type": "Expression",
+								"content": "@pipeline().RunId"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
 			}
 		],
 		"annotations": []
