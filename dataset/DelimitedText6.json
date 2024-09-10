@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "DelimitedText6",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ADLS",
+			"referenceName": "AzureDataLakeStorage2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Input",
+				"fileName": "apidata.csv",
+				"folderPath": "Output",
 				"fileSystem": "demofolder"
 			},
 			"columnDelimiter": ",",
@@ -18,23 +19,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "empid",
-				"type": "String"
-			},
-			{
-				"name": "empname",
-				"type": "String"
-			},
-			{
-				"name": "empsal",
-				"type": "String"
-			},
-			{
-				"name": "depid",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }

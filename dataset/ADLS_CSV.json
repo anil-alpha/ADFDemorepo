@@ -1,8 +1,8 @@
 {
-	"name": "SinkDataset",
+	"name": "ADLS_CSV",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorageforInputcontainerSQL",
+			"referenceName": "ADLS",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Output",
-				"fileSystem": "democontainer"
+				"fileName": "empidsaldep.csv",
+				"folderPath": "Input",
+				"fileSystem": "demofolder"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
@@ -32,7 +33,7 @@
 				"type": "String"
 			},
 			{
-				"name": "depud",
+				"name": "depid",
 				"type": "String"
 			}
 		]

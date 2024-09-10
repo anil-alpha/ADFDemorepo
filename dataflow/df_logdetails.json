@@ -1,0 +1,69 @@
+{
+	"name": "df_logdetails",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "dummy"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dflogsink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     ADFName as string,",
+				"     PipelineName as string,",
+				"     Status as string,",
+				"     RunID as string,",
+				"     TriggerName as string,",
+				"     LogFileName as string",
+				"}",
+				"source(output(",
+				"          dummy as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dummy",
+				"dummy derive(AFDName = $ADFName,",
+				"          PipelineName = $PipelineName,",
+				"          RunID = $RunID,",
+				"          TriggerName = $TriggerName,",
+				"          Status = $Status) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          AFDName,",
+				"          PipelineName,",
+				"          RunID,",
+				"          TriggerName,",
+				"          Status",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[($LogFileName)],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

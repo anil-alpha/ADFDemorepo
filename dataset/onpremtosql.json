@@ -1,26 +1,16 @@
 {
-	"name": "EmpTable",
+	"name": "onpremtosql",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "onprem",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"FileName": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().FileName",
-					"type": "Expression"
-				},
-				"folderPath": "Input",
-				"fileSystem": "democontainer"
+				"type": "FileServerLocation",
+				"fileName": "empidsaldep.csv"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
@@ -41,7 +31,7 @@
 				"type": "String"
 			},
 			{
-				"name": "depud",
+				"name": "depid",
 				"type": "String"
 			}
 		]

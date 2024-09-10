@@ -1,36 +1,31 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "AzureSqlTable_CDC",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabaselinkedservice",
+			"referenceName": "AzureSqlDatabase_source",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "empid",
+				"name": "ID",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "empname",
+				"name": "LastName",
 				"type": "varchar"
 			},
 			{
-				"name": "empsal",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "depid",
+				"name": "Age",
 				"type": "int",
 				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "emp"
+			"table": "Persons"
 		}
 	}
 }

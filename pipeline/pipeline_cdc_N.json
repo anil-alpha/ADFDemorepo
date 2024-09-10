@@ -1,0 +1,35 @@
+{
+	"name": "pipeline_cdc_N",
+	"properties": {
+		"activities": [
+			{
+				"name": "ChangeDataCapture_CDC",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "ChangeDataCapture_CDC",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine",
+					"continuationSettings": {
+						"customizedCheckpointKey": "171760f7-a90a-4788-8a0f-3f5bdfe00f68"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

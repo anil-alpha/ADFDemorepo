@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "DelimitedText4",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ADLS",
@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Input",
+				"fileName": "outputoffset.csv",
+				"folderPath": "Output",
 				"fileSystem": "demofolder"
 			},
 			"columnDelimiter": ",",
@@ -18,23 +19,6 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "empid",
-				"type": "String"
-			},
-			{
-				"name": "empname",
-				"type": "String"
-			},
-			{
-				"name": "empsal",
-				"type": "String"
-			},
-			{
-				"name": "depid",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
