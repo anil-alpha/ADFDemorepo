@@ -2,7 +2,7 @@
 	"name": "AzureSqlTable_CDC",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase_cdc_sink",
+			"referenceName": "AzureSqlDatabase_source",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -25,7 +25,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Persons_sink"
+			"table": "Persons"
 		}
 	}
 }
