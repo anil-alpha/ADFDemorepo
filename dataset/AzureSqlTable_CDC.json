@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable",
+	"name": "AzureSqlTable_CDC",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabaselinkedservice",
@@ -9,28 +9,23 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "empid",
+				"name": "ID",
 				"type": "int",
 				"precision": 10
 			},
 			{
-				"name": "empname",
+				"name": "LastName",
 				"type": "varchar"
 			},
 			{
-				"name": "empsal",
-				"type": "float",
-				"precision": 15
-			},
-			{
-				"name": "depid",
+				"name": "Age",
 				"type": "int",
 				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "emp_csv"
+			"table": "Persons_sink"
 		}
 	}
 }
