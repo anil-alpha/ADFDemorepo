@@ -19,7 +19,7 @@
 					"value": "@dataset().tablename",
 					"type": "Expression"
 				},
-				"folderPath": "Output",
+				"folderPath": "sqltables",
 				"container": "demofolder"
 			},
 			"columnDelimiter": ",",
