@@ -9,8 +9,8 @@
 			"dboname": {
 				"type": "String"
 			},
-			"tablename": {
-				"type": "String"
+			"TableName": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
