@@ -32,7 +32,7 @@
 				}
 			},
 			{
-				"name": "schemavalidation ref",
+				"name": "schemavalidationref",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -71,7 +71,7 @@
 						]
 					},
 					{
-						"activity": "schemavalidation ref",
+						"activity": "schemavalidationref",
 						"dependencyConditions": [
 							"Succeeded"
 						]
