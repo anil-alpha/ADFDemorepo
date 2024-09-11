@@ -18,7 +18,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().dboname",
+				"value": "@dataset().Schema",
 				"type": "Expression"
 			},
 			"table": {
