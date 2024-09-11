@@ -80,7 +80,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('schemavalidation').output.structure,activity('schemavalidation ref').output.structure)",
+						"value": "@equals(activity('schemavalidation').output.structure,activity('schemavalidationref').output.structure)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
