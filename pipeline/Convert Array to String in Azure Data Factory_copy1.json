@@ -1,5 +1,5 @@
 {
-	"name": "Convert Array to String in Azure Data Factory",
+	"name": "Convert Array to String in Azure Data Factory_copy1",
 	"properties": {
 		"activities": [
 			{
@@ -34,73 +34,8 @@
 				}
 			},
 			{
-				"name": "ForEach1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Lookup1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@activity('Lookup1').output.value",
-						"type": "Expression"
-					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "Set variable1",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "tempnames",
-								"value": {
-									"value": "@concat(item().empname,';',variables('Names'))",
-									"type": "Expression"
-								}
-							}
-						},
-						{
-							"name": "Set variable1_copy1",
-							"type": "SetVariable",
-							"dependsOn": [
-								{
-									"activity": "Set variable1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "Names",
-								"value": {
-									"value": "@variables('tempnames')",
-									"type": "Expression"
-								}
-							}
-						}
-					]
-				}
-			},
-			{
 				"name": "ForEach2",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Lookup1",
@@ -152,19 +87,13 @@
 				"typeProperties": {
 					"variableName": "namestring",
 					"value": {
-						"value": "@join(activity('Lookup1').output.value,';')",
+						"value": "@join(variables('AppendNameArray'),';')",
 						"type": "Expression"
 					}
 				}
 			}
 		],
 		"variables": {
-			"Names": {
-				"type": "String"
-			},
-			"tempnames": {
-				"type": "String"
-			},
 			"AppendNameArray": {
 				"type": "Array"
 			},
