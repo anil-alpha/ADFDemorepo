@@ -21,11 +21,11 @@
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
 							"modifiedDatetimeStart": {
-								"value": "addHours(utcnow(), -5)\n",
+								"value": "@addHours(utcNow(), -2)",
 								"type": "Expression"
 							},
 							"modifiedDatetimeEnd": {
-								"value": "utcNow()",
+								"value": "@utcNow()",
 								"type": "Expression"
 							},
 							"wildcardFileName": "*.csv",
