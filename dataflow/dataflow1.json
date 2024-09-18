@@ -12,7 +12,22 @@
 					"name": "adlssourceerrorhandle"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
 			"transformations": [
 				{
 					"name": "split1"
@@ -20,18 +35,44 @@
 			],
 			"scriptLines": [
 				"source(output(",
-				"          empid as short,",
-				"          empname as string,",
-				"          empsal as short,",
-				"          depid as short,",
-				"          gender as string,",
-				"          dob as string",
+				"          slDate as string,",
+				"          Item as string,",
+				"          country as string,",
+				"          quantity as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> adlssourceerrorhandle",
-				"adlssourceerrorhandle split(isNull(toDate(dob,'yyyy-MMM-dd')),",
-				"     disjoint: false) ~> split1@(errorrows, goodrows)"
+				"adlssourceerrorhandle split(isNull(toDate(slDate,'dd-MMM-yy'))\r",
+				",",
+				"     disjoint: false) ~> split1@(errorrows, goodrows)",
+				"split1@goodrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          salesdate as date,",
+				"          salesitem as string,",
+				"          country as string,",
+				"          quantity as integer,",
+				"          filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"split1@errorrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}

@@ -29,10 +29,6 @@
 				"name": "filename",
 				"type": "varchar"
 			}
-		],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "sqlsalesdata"
-		}
+		]
 	}
 }
