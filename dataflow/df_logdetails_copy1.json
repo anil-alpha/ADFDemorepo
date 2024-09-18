@@ -1,0 +1,85 @@
+{
+	"name": "df_logdetails_copy1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Dstxt",
+						"type": "DatasetReference"
+					},
+					"name": "Dummy"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "Log"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     ADFName as string,",
+				"     PipeName as string,",
+				"     Status as string,",
+				"     RunID as string,",
+				"     TrigerName as string,",
+				"     LogFileName as string",
+				"}",
+				"source(output(",
+				"          Dummy as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Dummy",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:[('output/log/'+ $LogFileName)]) ~> Log",
+				"Dummy derive(ADFName = $ADFName,",
+				"          PipeName = $PipeName,",
+				"          Status = $Status,",
+				"          RunID = $RunID,",
+				"          TrigerName = $TrigerName) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ADFName,",
+				"          PipeName,",
+				"          Status,",
+				"          RunID,",
+				"          TrigerName",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1, Log union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[($LogFileName)],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

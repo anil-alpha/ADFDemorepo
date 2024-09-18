@@ -1,0 +1,219 @@
+{
+	"name": "pl_AuditLog",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "LogFileName",
+					"value": {
+						"value": "@concat(formatDateTime(utcNow(),'yyyy-MM-dd'),'_log.csv')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference",
+						"parameters": {
+							"LogFileName": {
+								"value": "@variables('LogFileName')",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"exists"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('Get Metadata1').output.exists",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "df_logdetails",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logdetails",
+									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"PipeName": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": {
+											"value": "'@{string('success')}'",
+											"type": "Expression"
+										},
+										"RunID": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TrigerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"LogFileName": {
+											"value": "'@{variables('LogFileName')}'",
+											"type": "Expression"
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "df_logdetails_copy1",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logdetails_copy1",
+									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"PipeName": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": {
+											"value": "'@{string('success')}'",
+											"type": "Expression"
+										},
+										"RunID": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TrigerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"LogFileName": {
+											"value": "'@{variables('LogFileName')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"Log": {
+											"LogFileName": {
+												"value": "@variables('LogFileName')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"LogFileName": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
