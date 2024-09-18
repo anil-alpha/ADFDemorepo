@@ -13,19 +13,25 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
-				"          empid as string,",
+				"          empid as short,",
 				"          empname as string,",
-				"          empsal as string,",
-				"          depid as string,",
+				"          empsal as short,",
+				"          depid as short,",
 				"          gender as string,",
 				"          dob as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> adlssourceerrorhandle"
+				"     ignoreNoFilesFound: false) ~> adlssourceerrorhandle",
+				"adlssourceerrorhandle split(isNull(toDate(dob,'yyyy-MMM-dd')),",
+				"     disjoint: false) ~> split1@(errorrows, goodrows)"
 			]
 		}
 	}
