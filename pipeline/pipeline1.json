@@ -1,6 +1,108 @@
 {
 	"name": "pipeline1",
 	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata2",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DelimitedText5",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": {
+								"value": "@item().name",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"lastModified",
+						"itemName"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(formatDateTime(activity('Get Metadata1').output.lastModified,'yyyyMMddHHmmss'), formatDateTime(variables('lastmodifieddate'),'yyyyMMddHHmmss'))\n\n\n\n\n",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "latestFilename",
+								"value": {
+									"value": "@activity('Get Metadata2').output.itemName",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "If Condition1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "lastmodifieddate",
+					"value": {
+						"value": "@activity('Get Metadata2').output.lastModified",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"annotations": []
 	}
 }
