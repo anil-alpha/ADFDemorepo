@@ -1,10 +1,10 @@
 {
-	"name": "pipeline1",
+	"name": "Merge Multiple rows in to Single row using Mapping data flow in Azure Data Factory",
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata2",
-				"type": "GetMetadata",
+				"name": "dataflow2",
+				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,91 +15,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "DelimitedText5",
-						"type": "DatasetReference",
-						"parameters": {
-							"FileName": {
-								"value": "@item().name",
-								"type": "Expression"
-							}
-						}
+					"dataflow": {
+						"referenceName": "dataflow2",
+						"type": "DataFlowReference"
 					},
-					"fieldList": [
-						"lastModified",
-						"itemName"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"enablePartitionDiscovery": false
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
 					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
-				}
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata2",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"expression": {
-						"value": "@greater(formatDateTime(activity('Get Metadata1').output.lastModified,'yyyyMMddHHmmss'), formatDateTime(variables('lastmodifieddate'),'yyyyMMddHHmmss'))\n\n\n\n\n",
-						"type": "Expression"
-					},
-					"ifTrueActivities": [
-						{
-							"name": "Set variable1",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"policy": {
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "latestFilename",
-								"value": {
-									"value": "@activity('Get Metadata2').output.itemName",
-									"type": "Expression"
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "Set variable2",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "If Condition1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "lastmodifieddate",
-					"value": {
-						"value": "@activity('Get Metadata2').output.lastModified",
-						"type": "Expression"
-					}
+					"traceLevel": "Fine"
 				}
 			}
 		],
