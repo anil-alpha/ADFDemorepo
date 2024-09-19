@@ -1,0 +1,43 @@
+{
+	"name": "DelimitedText8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "SourceFile",
+				"type": "String"
+			},
+			{
+				"name": "dup_Name",
+				"type": "String"
+			},
+			{
+				"name": "PipelineName",
+				"type": "String"
+			},
+			{
+				"name": "staticcol",
+				"type": "String"
+			}
+		]
+	}
+}

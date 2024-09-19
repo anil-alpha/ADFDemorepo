@@ -1,0 +1,40 @@
+{
+	"name": "dsemp1skills",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emp1_skills.csv",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "SourceFile",
+				"type": "String"
+			},
+			{
+				"name": "dup_Name",
+				"type": "String"
+			},
+			{
+				"name": "Skills",
+				"type": "String"
+			}
+		]
+	}
+}
