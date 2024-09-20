@@ -13,7 +13,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@string(greater(item(),3))",
+						"value": "@greater(item(),3)",
 						"type": "Expression"
 					}
 				}
@@ -21,6 +21,8 @@
 			{
 				"name": "Append variable1",
 				"type": "AppendVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Filter1",
