@@ -33,7 +33,7 @@
 				"typeProperties": {
 					"variableName": "filtervalues",
 					"value": {
-						"value": "@activity('Filter1').output",
+						"value": "@activity('Filter1').output.value",
 						"type": "Expression"
 					}
 				}
