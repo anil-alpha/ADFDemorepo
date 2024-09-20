@@ -13,7 +13,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@greater(item(),3)\n",
+						"value": "@string(greater(item(),3))",
 						"type": "Expression"
 					}
 				}
@@ -33,7 +33,7 @@
 				"typeProperties": {
 					"variableName": "filtervalues",
 					"value": {
-						"value": "@array(activity('Filter1').output.Value)",
+						"value": "@activity('Filter1').output.Value",
 						"type": "Expression"
 					}
 				}
