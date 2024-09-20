@@ -19,10 +19,8 @@
 				}
 			},
 			{
-				"name": "Append variable1",
-				"type": "AppendVariable",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
 						"activity": "Filter1",
@@ -33,11 +31,28 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "filtervalues",
-					"value": {
-						"value": "@activity('Filter1').output.Value",
+					"items": {
+						"value": "@activity('Filter1').output",
 						"type": "Expression"
-					}
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Append variable1",
+							"type": "AppendVariable",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "filtervalues",
+								"value": {
+									"value": "@activity('Filter1').output.Value",
+									"type": "Expression"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
