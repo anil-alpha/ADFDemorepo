@@ -9,6 +9,12 @@
 				"userProperties": []
 			}
 		],
+		"parameters": {
+			"Valuesofarray": {
+				"type": "array",
+				"defaultValue": "[1,2,3,,4,5]"
+			}
+		},
 		"annotations": []
 	}
 }
