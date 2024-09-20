@@ -2,7 +2,7 @@
 	"name": "SinkDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "AzureDataLakeStorage3",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Output",
-				"fileSystem": "democontainer"
+				"fileSystem": "data"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
