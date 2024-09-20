@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@pipeline().parameters.Filearray",
+						"value": "@pipeline().parameters.outputfolders",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -71,7 +71,7 @@
 		],
 		"parameters": {
 			"outputfolders": {
-				"type": "array",
+				"type": "string",
 				"defaultValue": "[output1,output2,output3]"
 			}
 		},
