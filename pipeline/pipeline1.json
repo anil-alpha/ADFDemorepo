@@ -6,7 +6,17 @@
 				"name": "Filter1",
 				"type": "Filter",
 				"dependsOn": [],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Valuesofarray",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@greater(item(),3)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
