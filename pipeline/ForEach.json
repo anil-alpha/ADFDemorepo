@@ -8,10 +8,6 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@pipeline().parameters.outputfolders",
-						"type": "Expression"
-					},
 					"isSequential": true,
 					"activities": [
 						{
@@ -71,7 +67,7 @@
 		],
 		"parameters": {
 			"outputfolders": {
-				"type": "string",
+				"type": "array",
 				"defaultValue": "[output1,output2,output3]"
 			}
 		},
