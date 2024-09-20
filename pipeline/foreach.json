@@ -15,7 +15,7 @@
 		"parameters": {
 			"Folders": {
 				"type": "array",
-				"defaultValue": "[a]"
+				"defaultValue": "['a1', 'a2', 'a3']"
 			}
 		},
 		"annotations": []
