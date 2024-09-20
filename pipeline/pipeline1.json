@@ -40,14 +40,12 @@
 						{
 							"name": "Append variable1",
 							"type": "AppendVariable",
-							"state": "Inactive",
-							"onInactiveMarkAs": "Succeeded",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "filtervalues",
 								"value": {
-									"value": "@activity('Filter1').output.Value",
+									"value": "@item().Value",
 									"type": "Expression"
 								}
 							}
