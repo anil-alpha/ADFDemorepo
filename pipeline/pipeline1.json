@@ -17,12 +17,37 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [
+					{
+						"activity": "Filter1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filtervalues",
+					"value": {
+						"value": "@activity('Filter1').output",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
 			"Valuesofarray": {
 				"type": "array",
 				"defaultValue": "[1,2,3,,4,5]"
+			}
+		},
+		"variables": {
+			"filtervalues": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
